@@ -1,6 +1,6 @@
-##defword
+##[defword](http://defword.ggenikus.com.ua/)
 
-defword is web app, it search definition/translateion of word in different
+[defword](http://defword.ggenikus.com.ua/) is web app, it search definition/translateion of word in different
 services (translate.yandex.ru urbandictionary dict.org) and show aggregated results.
 
 Supported languages:
