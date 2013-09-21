@@ -13,23 +13,23 @@
        "</div>"))
 
 (defn generate-content-for-urban [data]
-  (let [content (get-in data [:data])] 
+  (let [content (get-in data [:data])]
     (apply str (map #(let [example-str (:example %)
-                           defin-str (:definition %)] 
+                           defin-str (:definition %)]
                        (str "<pre>"
                          (if defin-str (str "<span class='badge'>Definition:</span>"
                                                "<p>"defin-str"</p>"))
                             (if example-str (str "<span class='badge'>Example:</span>"
-                                                 "<p>"example-str"</p>")) 
+                                                 "<p>"example-str"</p>"))
                             "</pre>"))
                     content))))
 
-(defn generate-content-for-dict-org [data] 
+(defn generate-content-for-dict-org [data]
   (let [content (get-in data [:data :text])]
-    (if content 
+    (if content
       (str "<pre>" content "</pre>"))))
 
-(defn generate-content-for-yandex [data] 
+(defn generate-content-for-yandex [data]
   (let [content (apply str (:data data))]
     (str "<pre>"content"</pre>")))
 
@@ -39,7 +39,7 @@
 (defmethod get-search-result :urban [data] (generate-panel "Urbandictionary"
                                                            "panel-primary"
                                                            #(generate-content-for-urban data)))
-(defmethod get-search-result :yandex [data] (generate-panel "Yandex translate" 
+(defmethod get-search-result :yandex [data] (generate-panel "Yandex translate"
                                                             "panel-success"
                                                             #(generate-content-for-yandex data)))
 (defmethod get-search-result :dict-org [data] (generate-panel "Dict.org"
@@ -57,20 +57,27 @@
 (defn show-loading-inidcator [] (dom/set-styles! (dom/by-id "loading") {:display ""}))
 (defn hide-loading-inidcaotr [] (dom/set-styles! (dom/by-id "loading") {:display "none"}))
 
-(defn print-value [] 
+(defn print-value []
   (let [text (str (dom/value (dom/by-id "search-inp")))]
     (show-loading-inidcator)
     (dom/set-styles! (dom/by-id "loading") {:display "visible"})
-    (remote-callback :translate [text] 
-                     (fn [arg] 
+    (remote-callback :translate [text]
+                     (fn [arg]
                        (hide-loading-inidcaotr)
-                       (render-data arg) 
+                       (render-data arg)
                        (.scrollIntoView (.getElementById js/document "search-inp"))))))
 
 
+(defn on-enter [f event] 
+  (when (= (:keyCode event) 13) 
+    (f)))
+
 (defn ^:export init []
-  (if (and js/document (.-getElementById js/document)) 
-    (do 
-      (ev/listen! (dom/by-id "translate") :click print-value))))
+  (if (and js/document (.-getElementById js/document))
+    (do
+      (ev/listen! (dom/by-id "translate") :click print-value)
+      (ev/listen! (dom/by-id "search-inp") :keypress (partial on-enter print-value)))))
+
+
 
 
