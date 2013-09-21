@@ -11,7 +11,10 @@
 (defn fetch-from-dict-org [request]
   (utils/fetch (generate-url request)))
 
-(defn grab-content-from-dict-org-page [text]
+(defn remove-links [text]
+  (clojure.string/replace text #"(<a href=\".*\">(.*)</a>)" "$2"))
+                                                               
+  (defn grab-content-from-dict-org-page [text]
   (some-> text
       (laser/parse)
       (laser/select (laser/element= :pre))
@@ -22,7 +25,7 @@
 (defn dict-org->generic-map [text] 
   {:dict :dict-org
    :link "link"
-   :data {:text (grab-content-from-dict-org-page text)}})
+   :data {:text (remove-links (grab-content-from-dict-org-page text))}})
 
 (defn search-in-dict-org [request]
   (-> request 
