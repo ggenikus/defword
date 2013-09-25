@@ -23,11 +23,13 @@
       laser/fragment-to-html))
 
 (defn dict-org->generic-map [text] 
-  {:dict :dict-org
-   :link "link"
-   :data {:text (remove-links (grab-content-from-dict-org-page text))}})
+  (let [content (grab-content-from-dict-org-page text) ]
+    (when content
+       {:dict :dict-org 
+        :link "link" 
+        :data {:text (remove-links content)}})))
 
 (defn search-in-dict-org [request]
-  (-> request 
+  (some-> request 
       fetch-from-dict-org 
       dict-org->generic-map))

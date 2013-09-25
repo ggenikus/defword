@@ -5,7 +5,8 @@
             :url "http://www.eclipse.org/legal/kepl-v10.html"}
   :source-paths ["src/clj"]          
 
-  :dependencies [[org.clojure/clojure "1.5.1"]
+  :dependencies [[org.clojure/clojure "1.5.1"] 
+                 ; [org.clojure/clojurescript "0.0-1889"]
                  [org.clojure/data.json "0.2.2"]
                  [org.clojure/core.incubator "0.1.3"]
                  [midje "1.5.1"]
@@ -25,11 +26,20 @@
                 :source-paths ["src/cljs"]
 
                 ;; Google Closure (CLS) options configuration
-                :compiler {;; CLS generated JS script filename
-                           :output-to "resources/public/js/app.js"
+                :compiler {;; CLS generated JS script filename 
+                           :optimizations :advanced 
+                           :pretty-print false
+                           ; :output-dir "out"
+                           ; :output-to "main.js"
 
-                           ;; minimal JS optimization directive
-                           :optimizations :whitespace
+                
+                           :output-dir "out"
+                           :output-to "resources/public/js/app.js"
+                           ; :source-map "js/app.js.map"
+
+                           ; minimal JS optimization directive
+                           ; :optimizations :whitespace
 
                            ;; generated JS code prettyfication
-                           :pretty-print true}}]})
+                           ; :pretty-print true
+                           }}]})

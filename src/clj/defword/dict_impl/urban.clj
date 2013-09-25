@@ -11,10 +11,11 @@
     (utils/fetch (generate-url request)))
 
 (defn urban->generic-map [{:strs [list]}] 
+  (when (not (empty? list)) 
   {:dict :urban
    :link "link"
    :data (map (comp walk/keywordize-keys #(select-keys % ["example" "definition"])) 
-              list)})
+              list) }))
 
 (defn search-in-urban [request]
   (-> request 

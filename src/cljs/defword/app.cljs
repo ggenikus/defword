@@ -51,7 +51,8 @@
   (dom/append! (dom/by-id "search-results") htmlstr ))
 
 
-(defn render-data [data] (render-elements (apply str (map get-search-result data))))
+;;(defn render-data [data] (render-elements (apply str (map get-search-result data ))))
+(defn render-data [data] (render-elements (apply str (map get-search-result (filter (complement nil?) data) ))))
 
 
 (defn show-loading-inidcator [] (dom/set-styles! (dom/by-id "loading") {:display ""}))
@@ -75,6 +76,7 @@
 (defn ^:export init []
   (if (and js/document (.-getElementById js/document))
     (do
+      (.log js/console "hello world !")
       (ev/listen! (dom/by-id "translate") :click print-value)
       (ev/listen! (dom/by-id "search-inp") :keypress (partial on-enter print-value)))))
 
