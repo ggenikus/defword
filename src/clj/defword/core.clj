@@ -21,7 +21,7 @@
 
 (defroutes defword-routes
   (GET "/" [] (resp/resource-response  "public/defword-app.html")) 
-  (GET "/translate/:word" [word] word)
+  (GET "/about" [] (resp/resource-response  "public/about.html")) 
   (route/resources "/"))
 
 (def app

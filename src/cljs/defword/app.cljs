@@ -37,7 +37,7 @@
 (defmulti get-search-result :dict)
 
 (defmethod get-search-result :urban [data] (generate-panel "Urbandictionary"
-                                                           "panel-primary"
+                                                           "panel-info"
                                                            #(generate-content-for-urban data)))
 (defmethod get-search-result :yandex [data] (generate-panel "Yandex translate"
                                                             "panel-success"

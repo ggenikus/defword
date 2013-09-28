@@ -18,30 +18,47 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> 
-<link rel="stylesheet" href="http://bootswatch.com/readable/bootstrap.min.css">
+<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">
 
 </head>
-<body>
-  <div class="jumbotron">
-    <div class="container">
+<body> 
+  <div class="container">
+  <div class="jumbotron text-center " >
       <h1 class="text-center">defword<small ><span class="badge" style="background-color: #953b39;"> β</span></small></h1>
-    </div>
+      <p class="lead">
+        <!-- defword это сревис для преревода слов. При переводе с русского на агнлийский defword  -->
+        <!-- переведет слово на английский, а также найдет определение и примеры использования английского слова в -->
+        <!-- сленговом и классическом словарях. Если ввести слово на английском defword переведет его на русский,  -->
+        <!-- и определение и примеры использования английского слова. -->
+
+<small> 
+  defword переведет английсое и рууское слово,
+                найдет определения и примеры использования<a href="about">...</a>
+              </small>
+      </p>
   </div>
-    <div class="container"> 
       <div class="row">
-      <div class="col-md-12 col-xs-12 col-sm-12"> 
+      <div class=" col-lg-1 col-md-1 col-xs-1 col-sm-1"></div>
+      <div class="col-md-8 col-xs-12 col-sm-12 col-md-offset-1 col-lg-offset-1"> 
         <div class="input-group" id="search-panel"> 
           <input type="text"  id="search-inp" class="form-control"> 
           <span class="input-group-btn"> 
-            <button class="btn btn-default"  id="translate" type="button">Перевести</button> 
+            <button class="btn btn-default"  id="translate" type="button">
+              <!-- <span class="glyphicon glyphicon-play"> -->
+              <!-- Перевести -->
+            <!-- </span> -->
+            ↵
+            <!-- <span class="glyphicon glyphicon-font"> -->
+            <!-- </span> -->
+            </button> 
           </span> 
         </div>
       </div>
     </div> 
     <div id="loading" class="row" style="display:none;">
 
-      <br/> <div class="col-xs-6 col-md-6 col-sm-6"></div> 
-      <div class="col-xs-3 col-xs-offset-6 col-sm-3 col-sm-offset-6 col-md-3 col-md-offset-6">
+      <br/> <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6"></div> 
+      <div class="col-xs-3 col-xs-offset-6 col-sm-3 col-sm-offset-6 col-md-3 col-md-offset-6 col-lg-3 col-lg-offset-6">
           <img src="img/loading.gif"/>
         </div>
       </div>
