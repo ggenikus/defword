@@ -8,14 +8,15 @@
 
 (defremote translate [word] (if (dict/eng? word) 
 
-                              [(dict/search-in :yandex word :en-ru)
-                               (dict/search-in :urban word)
-                               (dict/search-in :dict-org word)]
+                             (map deref 
+                                  [(future (dict/search-in :yandex word :en-ru)) 
+                                   (future  (dict/search-in :urban word)) 
+                                   (future  (dict/search-in :dict-org word))])
 
                               (let [ya-ru-en (dict/search-in :yandex word :ru-en)
                                      ya-ru-en-word (apply str (:data ya-ru-en)) ]
-                                 [ya-ru-en (dict/search-in :urban ya-ru-en-word) 
-                                  (dict/search-in :dict-org ya-ru-en-word)])))
+                                   (conj (map deref [(future (dict/search-in :urban ya-ru-en-word)) 
+                                                     (future (dict/search-in :dict-org ya-ru-en-word)) ]) ya-ru-en))))
 
 
 (defroutes defword-routes
