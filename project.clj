@@ -6,7 +6,7 @@
   :source-paths ["src/clj"]          
 
   :dependencies [[org.clojure/clojure "1.5.1"] 
-                 ; [org.clojure/clojurescript "0.0-1889"]
+                 [org.clojure/clojurescript "0.0-1889"]
                  [org.clojure/data.json "0.2.2"]
                  [org.clojure/core.incubator "0.1.3"]
                  [midje "1.5.1"]
@@ -16,7 +16,7 @@
                  [shoreleave/shoreleave-remote-ring "0.3.0"]
                  [shoreleave/shoreleave-remote "0.3.0"]]
   :plugins [[lein-ring "0.8.6"]
-            [lein-cljsbuild "0.3.2"]]
+            [lein-cljsbuild "0.3.4"]]
 
   :ring {:handler defword.core/app}
 
